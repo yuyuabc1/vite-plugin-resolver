@@ -1,0 +1,27 @@
+{
+  "name": "vite-plugin-resolver",
+  "version": "1.0.0",
+  "description": "A tiny source parser plugins of Vite.",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "rm -rf dist && rollup -c"
+  },
+  "keywords": [
+    "vite",
+    "plugin",
+    "external"
+  ],
+  "files": [
+    "dist"
+  ],
+  "author": "朱晨亮",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^16.11.6",
+    "rollup-plugin-typescript2": "^0.30.0",
+    "typescript": "^4.4.4",
+    "vite": "^2.6.13",
+    "vue-template-compiler": "^2.6.14"
+  },
+  "dependencies": {}
+}
