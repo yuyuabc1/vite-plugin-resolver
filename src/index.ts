@@ -1,8 +1,9 @@
 import externals from "./external";
 import route from "./route";
-// import { langJsx } from './utils';
+import addLang from './andLang';
 
 export default {
   externals,
+  addLang,
   generateRoute: route
 }

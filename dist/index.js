@@ -1,8 +1,8 @@
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('path'), require('fs')) :
-  typeof define === 'function' && define.amd ? define(['path', 'fs'], factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global["vite-plugin-resolver"] = factory(global.path, global.fs));
-})(this, (function (path, fs) { 'use strict';
+  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('path'), require('fs'), require('vue-template-compiler')) :
+  typeof define === 'function' && define.amd ? define(['path', 'fs', 'vue-template-compiler'], factory) :
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global["vite-plugin-resolver"] = factory(global.path, global.fs, global.vueTemplateCompiler));
+})(this, (function (path, fs, vueTemplateCompiler) { 'use strict';
 
   function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
@@ -106,9 +106,25 @@
       return { configureServer };
   }
 
-  // import { langJsx } from './utils';
+  function addLang(options) {
+      return {
+          name: 'vite-plugin-resolver-lang-jsx',
+          enforce: 'pre',
+          transform(code, id) {
+              if (!id.endsWith('.vue'))
+                  return;
+              const { script } = vueTemplateCompiler.parseComponent(code);
+              const JSX = (script === null || script === void 0 ? void 0 : script.content) && /<[A-Za-z]/.test(script.content);
+              if (JSX) {
+                  return code.replace('<script>', `<script lang="${(options === null || options === void 0 ? void 0 : options.lang) || 'jsx'}">`);
+              }
+          },
+      };
+  }
+
   var index = {
       externals,
+      addLang,
       generateRoute: generate
   };
 

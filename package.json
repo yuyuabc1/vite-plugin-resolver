@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-resolver",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A tiny source parser plugins of Vite.",
   "main": "dist/index.js",
   "scripts": {
