@@ -1,4 +1,3 @@
-/* eslint-disable */
 import path from 'path'
 import * as fs from 'fs'
 import { Alias, Plugin as VitePlugin } from 'vite'

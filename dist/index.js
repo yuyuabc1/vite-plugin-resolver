@@ -1,8 +1,8 @@
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('path'), require('fs'), require('vue-template-compiler')) :
-  typeof define === 'function' && define.amd ? define(['path', 'fs', 'vue-template-compiler'], factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global["vite-plugin-resolver"] = factory(global.path, global.fs, global.vueTemplateCompiler));
-})(this, (function (path, fs, vueTemplateCompiler) { 'use strict';
+  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('path'), require('fs'), require('vue-template-compiler')) :
+  typeof define === 'function' && define.amd ? define(['exports', 'path', 'fs', 'vue-template-compiler'], factory) :
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global["vite-plugin-resolver"] = {}, global.path, global.fs, global.vueTemplateCompiler));
+})(this, (function (exports, path, fs, vueTemplateCompiler) { 'use strict';
 
   function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
@@ -27,7 +27,6 @@
   var path__default = /*#__PURE__*/_interopDefaultLegacy(path);
   var fs__namespace = /*#__PURE__*/_interopNamespace(fs);
 
-  /* eslint-disable */
   function externals(externals, options) {
       const modCache = {};
       const root = process.cwd();
@@ -106,6 +105,11 @@
       return { configureServer };
   }
 
+  var route = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    'default': generate
+  });
+
   function addLang(options) {
       return {
           name: 'vite-plugin-resolver-lang-jsx',
@@ -122,12 +126,10 @@
       };
   }
 
-  var index = {
-      externals,
-      addLang,
-      generateRoute: generate
-  };
+  exports.addLang = addLang;
+  exports.externals = externals;
+  exports.generateRoute = route;
 
-  return index;
+  Object.defineProperty(exports, '__esModule', { value: true });
 
 }));
